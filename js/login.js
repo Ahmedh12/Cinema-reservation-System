@@ -21,41 +21,13 @@ function validateForm(){
         alert(errors.join("\n"));
         return false;
     }
-<<<<<<< Updated upstream
-        // TODO : Prevent unmatched passwords to signup and make sure it is greater than 8 characters
-        // Remove the return true; and add your code instead
-=======
         // Prevent unmatched passwords to signup and make sure it is greater than 8 characters
->>>>>>> Stashed changes
   
 
 }
 
 
 
-<<<<<<< Updated upstream
-
-
-
-
-
-
-
-// Main Functions for the page /* DO NOT TOUCH TOUCH THIS SECTION */
-
-var check = function () {
-    if (document.getElementsByClassName('btn_sign')[0].innerHTML != 'SIGN IN') {
-        if (document.getElementById('password').value ==
-            document.getElementById('confirm_password').value) {
-            document.getElementById('message').style.color = 'green';
-            document.getElementById('message').innerHTML = 'matching';
-        } else {
-            document.getElementById('message').style.color = 'red';
-            document.getElementById('message').innerHTML = 'not matching';
-        }
-    }
-}
-=======
 // Main Functions for the page /* DO NOT TOUCH TOUCH THIS SECTION */
 
 // var check = function () {
@@ -70,7 +42,6 @@ var check = function () {
 //         }
 //     }
 // }
->>>>>>> Stashed changes
 function sign_up() {
     var inputs = document.querySelectorAll('.input_form_sign');
     document.querySelectorAll('.ul_tabs > li')[0].className = "";
