@@ -4352,6 +4352,21 @@ input[type=button].btn-block {
   border: 1px solid rgba(0, 0, 0, 0.125);
   border-radius: 0.25rem;
 }
+.card-signIn{
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;
+  background-color: #fff;
+  background-clip: border-box;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  border-radius: 0.25rem;
+  margin-top: 150px;
+  margin-left: 500px;
+  margin-right: 500px;
+
+}
 .card > hr {
   margin-right: 0;
   margin-left: 0;
@@ -10249,3 +10264,5 @@ position: absolute;
         border:2px solid #f4623a;
         border-radius: 3px
    }
+
+
