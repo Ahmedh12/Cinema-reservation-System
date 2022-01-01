@@ -40,11 +40,16 @@
                     placeholder="Role"
                     name="Role"
                   /> -->
+                  <select name="AccountType" class="input_form_sign">
+                    <option value="User">User</option>
+                    <option value="Admin" selected>Admin</option>
+                  </select>
                   <input
                     type="username"
                     class="input_form_sign d_block active_inp"
                     placeholder="username"
                     name="username"
+                    id="username"
                   />
 
                   <input
@@ -53,8 +58,8 @@
                     placeholder="password"
                     name="pass_us"
                     id="password"
+                    onkeyup="check();"
                   />
-                  <!-- onkeyup="check();" -->
 
                   <input
                     type="password"
@@ -62,8 +67,8 @@
                     placeholder="confirm password"
                     name="conf_pass_us"
                     id="confirm_password"
+                    onkeyup="check();"
                   />
-                  <!-- onkeyup="check();" -->
                   <input
                     type="text"
                     class="input_form_sign"
@@ -82,10 +87,7 @@
                     placeholder="Email address"
                     name="Email"
                   />
-                  <select name="AccountType" class="input_form_sign d_block active_inp">
-                    <option value="User">User</option>
-                    <option value="Admin" selected>Admin</option>
-                  </select>
+
                   <span id="message" style="margin-left: 35%"></span>
                   <br />
                   <br />

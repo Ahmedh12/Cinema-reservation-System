@@ -20,10 +20,10 @@ function signin($conn)
   $result = mysqli_query($conn, $sql) or die("Query unsuccessful");
   if ($result) {
     // setcookie("LoggedIn", "true", time() + 7200, "/");
-    include("home.php");
+    header("Location:index.php?page=home");
   } else
     // setcookie("LoggedIn", "", time() - 7200, "/");
-    header("Location:login.html");
+    header("Location:index.php?page=login");
   return;
 }
 function signup($conn)
@@ -41,4 +41,5 @@ function signup($conn)
   }
   $sql = "INSERT INTO users (`username`, `password`, `email`, `first_name`, `last_name`, `admin`, `request_admin`) VALUES ('$username', '$pass', '$email', '$fname', '$lname', 0, '$request')";
   mysqli_query($conn,$sql);
+  header("Location:index.php?page=home");
 }
