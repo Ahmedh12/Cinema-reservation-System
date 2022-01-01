@@ -1,6 +1,9 @@
- <!-- Masthead-->
- <header class="masthead">
  <?php
-    INCLUDE("login.html");
-?>
- </header>
+
+    if (isset($_COOKIE["LoggedIn"])) {
+        include("home.php");
+    } else {
+        include("login.html");
+    }
+
+    ?>
