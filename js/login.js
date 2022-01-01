@@ -1,13 +1,24 @@
 function validateForm() {
-  if (document.getElementsByClassName("btn_sign")[0].innerHTML.search("SIGN IN") != -1) {
-    if(document.getElementById("username").innerHTML=="")
+  if (
+    document
+      .getElementsByClassName("btn_sign")[0]
+      .innerHTML.search("SIGN IN") != -1
+  )
     return true;
-  } else {
+  else {
     let x = document.getElementById("password").value;
     let y = document.getElementById("confirm_password").value;
+    let email = document.getElementById("Email").value;
     errors = [];
-    // var regularExpression = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/;
+    if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
+    } else {
+      alert("You have entered an invalid email address!");
+      return false;
+    }
+
     if (x != y || x.length < 8) {
+      errors.push("your passwords must be greater than 8 characters ");
+      alert(errors.join("\n"));
       return false;
     }
     if (x.search(/[a-z]/i) < 0) {
@@ -16,27 +27,27 @@ function validateForm() {
     if (x.search(/[0-9]/) < 0) {
       errors.push("Your password must contain at least one digit.");
     }
-    if (errors.length > 0) {
-      alert(errors.join("\n"));
-      return false;
-    }
+      if (errors.length > 0) {
+        alert(errors.join("\n"));
+        return false;
+      }
   }
-
-  // Prevent unmatched passwords to signup and make sure it is greater than 8 characters
 }
 
 var check = function () {
-    if (document.getElementsByClassName('btn_sign')[0].innerHTML != 'SIGN IN') {
-        if (document.getElementById('password').value ==
-            document.getElementById('confirm_password').value) {
-            document.getElementById('message').style.color = 'green';
-            document.getElementById('message').innerHTML = 'matching';
-        } else {
-            document.getElementById('message').style.color = 'red';
-            document.getElementById('message').innerHTML = 'not matching';
-        }
+  if (document.getElementsByClassName("btn_sign")[0].innerHTML == "SIGN UP") {
+    if (
+      document.getElementById("password").value ==
+      document.getElementById("confirm_password").value
+    ) {
+      document.getElementById("message").style.color = "green";
+      document.getElementById("message").innerHTML = "matching";
+    } else {
+      document.getElementById("message").style.color = "red";
+      document.getElementById("message").innerHTML = "not matching";
     }
-}
+  }
+};
 
 function sign_up() {
   var inputs = document.querySelectorAll(".input_form_sign");

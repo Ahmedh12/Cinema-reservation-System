@@ -20,10 +20,12 @@ function signin($conn)
   $result = mysqli_query($conn, $sql) or die("Query unsuccessful");
   if (mysqli_fetch_array($result)) {
     setcookie("LoggedIn", "true", time() + 7200, "/");
-    header("Location:index.php?page=home");
-  } else
-    // setcookie("LoggedIn", "", time() - 7200, "/");
+    header("Location:index.php?page=loggedin");
+  } else {
     header("Location:index.php?page=login");
+    echo '"invalid account data"';
+  }
+  // setcookie("LoggedIn", "", time() - 7200, "/");
   return;
 }
 function signup($conn)
@@ -39,7 +41,21 @@ function signup($conn)
   } else {
     $request = 0;
   }
-  $sql = "INSERT INTO users (`username`, `password`, `email`, `first_name`, `last_name`, `admin`, `request_admin`) VALUES ('$username', '$pass', '$email', '$fname', '$lname', 0, '$request')";
-  mysqli_query($conn, $sql);
-  header("Location:index.php?page=home");
+  $usercheck = ("SELECT * FROM users WHERE `username`='{$username}'");
+  $result = mysqli_query($conn, $usercheck) or die("Query unsuccessful");
+  $emailcheck = ("SELECT * FROM users WHERE `email`='{$email}'");
+  $result2 = mysqli_query($conn, $emailcheck) or die("Query unsuccessful");
+
+  if (mysqli_fetch_array($result)) {
+    header("Location:index.php?page=login");
+    echo '"username exists"';
+  } elseif (mysqli_fetch_array($result2)) {
+    header("Location:index.php?page=login");
+    echo '<script>alert("Email exists")</script>';
+  } else {
+    $sql = "INSERT INTO users (`username`, `password`, `email`, `first_name`, `last_name`, `admin`, `request_admin`) VALUES ('$username', '$pass', '$email', '$fname', '$lname', 0, '$request')";
+    mysqli_query($conn, $sql);
+    setcookie("LoggedIn", "true", time() + 7200, "/");
+    header("Location:index.php?page=loggedin");
+  }
 }
