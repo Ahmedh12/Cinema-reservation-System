@@ -1,7 +1,7 @@
  <?php
 
     if (isset($_COOKIE["LoggedIn"])) {
-        include("home.php");
+        include("loggedin.php");
     } else {
         include("login.html");
     }
