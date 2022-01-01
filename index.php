@@ -20,8 +20,8 @@
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ml-auto my-2 my-lg-0">
                         <li class="nav-item"><a class="nav-link" href="index.php?page=home">Home</a></li>
-                        <li class="nav-item"><a class="nav-link" href="index.php?page=movies">Movies</a></li>
-                        <li class="nav-item"><a class="nav-link" href="index.php?page=logincookies">User</a></li>
+                        <!--<li class="nav-item"><a class="nav-link" href="index.php?page=movies">Movies</a></li>-->
+                        <li class="nav-item"><a class="nav-link" href="index.php?page=logincookies">Login/Signup</a></li>
                     </ul>
                 </div>
             </div>
@@ -31,14 +31,7 @@
        $page = isset($_GET['page']) ? $_GET['page'] : 'home';
        include($page.'.php');
        ?>
-        <!-- Footer-->
-        <footer class="bg-light py-5">
-            <div class="container"><div class="small text-center text-muted">Copyright © 2020 - Movie Theater Seat Reservation System</div></div>
-        </footer>
-        <!-- Bootstrap core JS-->
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
-        <!-- Third party plugin JS-->
-        <!-- Core theme JS-->
         <script src="js/scripts.js"></script>
     </body>
 </html>

@@ -39,6 +39,6 @@
    }, 'slow');
   })
   $('.mov-det button').click(function(){
-    location.replace('index.php?page=reserve&id='+$(this).attr('data-id'))
+    location.replace('index.php?page=hall1&id='+$(this).attr('data-id'))
   })
 </script>
