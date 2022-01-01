@@ -1,6 +1,6 @@
 <?php 
   include 'admin/db_connect.php';
-  $movies = $conn->query("SELECT * FROM movies where '".date('Y-m-d')."' BETWEEN date(date_showing) and date(end_date) order by rand() limit 10");
+  $movies = $conn->query("SELECT * FROM movies /*where '".date('Y-m-d')."' BETWEEN date(date_showing) and date(end_date) order by rand()*/ limit 10");
 ?>
 
      
@@ -14,7 +14,7 @@
   <div class="list">
     <?php while($row=$movies->fetch_assoc()): ?>
         <div class="movie-item">
-          <img class="" src="assets/img/<?php echo $row['cover_img']  ?>" alt="<?php echo $row['title'] ?>" >
+          <img class="" src="assets/img/<?php echo $row['poster_image']  ?>" alt="<?php echo $row['title'] ?>" >
           <div class="mov-det">
             <button type="button" class="btn btn-primary" data-id="<?php echo $row['id'] ?>">Reserve Seat</button>
           </div>

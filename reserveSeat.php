@@ -13,6 +13,9 @@ foreach($seats as $s)
     $counter+=1;
 }
 
+print_r($seats);
+echo $_COOKIE["hall"];
+
 
 //TODO
 /*

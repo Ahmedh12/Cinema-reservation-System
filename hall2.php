@@ -5,7 +5,7 @@ include 'admin/db_connect.php';
 //TODO 
 /*
 Query reserved Seats from the DB
-add occupied class to seats with reserved ids on creation of seats
+add occupied class to reserved seats on creation of seats
 */
 
 $mov = $conn->query("SELECT * FROM movies where id =".$_GET['id'])->fetch_array();
@@ -45,8 +45,8 @@ $mov = $conn->query("SELECT * FROM movies where id =".$_GET['id'])->fetch_array(
 
     <div class="screen"></div>
     <?php
-    $row = 5;
-    $col = 6;
+    $row = 4;
+    $col = 5;
     $id  = 0;
     for ($i = 0; $i < $row; $i++) {
       echo "<div class='row'>";
@@ -65,10 +65,10 @@ $mov = $conn->query("SELECT * FROM movies where id =".$_GET['id'])->fetch_array(
 
   <div class="reserve">
     <form action="" method="post">
-      <input type="text" id="hall" name="hall" hidden value="hall1  ">
-      <button class="btn btn-lg btn-success">
+      <input type="text" id="hall" name="hall" hidden value="hall2">
+      <button  class="btn btn-lg btn-success" type="submit">
         Reserve
-      </button>
+      </button>    
     </form>
   </div>
 

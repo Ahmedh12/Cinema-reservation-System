@@ -1,6 +1,7 @@
 const container = document.querySelector(".container-hall");
 const reserve = document.querySelector(".reserve");
 const count = document.querySelector("#count");
+const hall = document.querySelector("#hall");
 var selectedSeats = new Map();
 var counter = 0;
 container.addEventListener("click", (e) => {
@@ -26,4 +27,5 @@ reserve.addEventListener("click", (e) => {
     strSeats += String(s) + ",";
   })
   document.cookie = "reserved=" + strSeats;
+  document.cookie = "hall="+ hall.value;
 });
