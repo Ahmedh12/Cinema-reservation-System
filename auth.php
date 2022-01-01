@@ -18,7 +18,7 @@ function signin($conn)
   $pass = $_GET["pass_us"];
   $sql = ("SELECT * FROM users WHERE `username`='{$username}' AND `password`='{$pass}'");
   $result = mysqli_query($conn, $sql) or die("Query unsuccessful");
-  if (count($result)) {
+  if (mysqli_fetch_array($result)) {
     // setcookie("LoggedIn", "true", time() + 7200, "/");
     header("Location:index.php?page=home");
   } else
