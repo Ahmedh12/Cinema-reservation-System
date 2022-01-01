@@ -1,5 +1,5 @@
 function validateForm() {
-  if (document.getElementsByClassName("btn_sign")[0].innerHTML.search("SIGN IN") != 1) {
+  if (document.getElementsByClassName("btn_sign")[0].innerHTML.search("SIGN IN") != -1) {
     if(document.getElementById("username").innerHTML=="")
     return true;
   } else {
