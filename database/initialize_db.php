@@ -2,7 +2,7 @@
 error_reporting(-1);
 ini_set('display_errors', 'On');
 
-$conn = mysqli_connect("localhost", "root", "");
+$conn = mysqli_connect("localhost", "root", "mysql");
 if (!$conn) {
     die("Connection failed: " . mysqli_connect_errno());
 }
@@ -76,3 +76,5 @@ if (mysqli_query($conn, "CREATE DATABASE IF NOT EXISTS theater_db")) {
     mysqli_query($conn, $sampleMovieData);
 } else
     echo "Error creating database: " . mysqli_error($conn);
+
+    mysqli_close($conn);
