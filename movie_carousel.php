@@ -1,6 +1,6 @@
 <?php 
   include 'admin/db_connect.php';
-  $movies = $conn->query("SELECT * FROM movies /*where '".date('Y-m-d')."' BETWEEN date(date_showing) and date(end_date) order by rand()*/ limit 10");
+  $movies = $conn->query("SELECT * FROM movies  limit 10");
 ?>
 
      
@@ -16,7 +16,7 @@
         <div class="movie-item">
           <img class="" src="assets/img/<?php echo $row['poster_image']  ?>" alt="<?php echo $row['title'] ?>" >
           <div class="mov-det">
-            <button type="button" class="btn btn-primary" data-id="<?php echo $row['id'] ?>">Reserve Seat</button>
+            <button type="button" class="btn btn-primary" data-id="<?php echo $row['id'].$row['room'] ?>">Reserve Seat</button>
           </div>
         </div>
     <?php endwhile; ?>
@@ -39,6 +39,7 @@
    }, 'slow');
   })
   $('.mov-det button').click(function(){
-    location.replace('index.php?page=hall1&id='+$(this).attr('data-id'))
+    location.replace('index.php?page=hall1&id='+$(this).attr('data-id'));
+    location.replace('index.php?page=hall'+$(this).attr('data-id')[1]+'&id='+$(this).attr('data-id')[0])
   })
 </script>

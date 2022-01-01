@@ -1,5 +1,6 @@
 <?php
-
+error_reporting(-1);
+ini_set('display_errors', 'On');
 include 'admin/db_connect.php';
 
 //TODO 
@@ -8,7 +9,7 @@ Query reserved Seats from the DB
 add occupied class to seats with reserved ids on creation of seats
 */
 
-$mov = $conn->query("SELECT * FROM movies where id =".$_GET['id'])->fetch_array();
+$mov = $conn->query("SELECT * FROM movies where id =".$_GET['id'])->fetch_assoc();
 ?>
 
 <!DOCTYPE html>
@@ -22,7 +23,7 @@ $mov = $conn->query("SELECT * FROM movies where id =".$_GET['id'])->fetch_array(
 </head>
 
   <div>
-    <img style="padding:50px" src="assets/img/<?php echo $mov['cover_img'] ?>" alt="" height = 250px>
+    <img style="padding:50px" src="assets/img/<?php echo $mov['poster_image']?>" alt="" height = 250px>
   </div>
 
   <ul class="showcase">

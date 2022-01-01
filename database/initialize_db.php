@@ -1,10 +1,8 @@
 <?php
 error_reporting(-1);
 ini_set('display_errors', 'On');
-//TODO open a connection and create your database and table
-// database_name = "req_3"
-// table_name = "crud"
-$conn = mysqli_connect("localhost", "root", "");
+
+$conn = mysqli_connect("localhost", "root", "mysql");
 if (!$conn) {
     die("Connection failed: " . mysqli_connect_errno());
 }
@@ -67,14 +65,14 @@ if (mysqli_query($conn, "CREATE DATABASE IF NOT EXISTS theater_db")) {
     foreach ($sqlqueries as $sql)
         mysqli_query($conn, $sql);
 
-    $sampleMovieData = "INSERT INTO `movies` (`id`, `title`, `poster_image`, `duration`, `release_date`) VALUES
-(1, 'The Matrix', '1600221180_matrix.jpg', 2.5, '2020-09-15'),
-(4, 'The Wolf of Wall Street', '1600221240_img 2.jpg', 3.75, '2020-09-17'),
-(5, 'Greatest Showman', '1600221900_images.jpg', 3, '2020-09-01'),
-(6, 'Jaws', '1600221900_download.jpg', 2.75, '2020-07-22'),
-(7, 'Extractions', '1600222080_extraction-20200423134825-19294.jpg', 3, '2020-09-02'),
-(8, 'Avengers End Game', '1600222200_avengersendgame-20190417122917-18221.jpg', 3, '2020-05-12'),
-(9, 'White House Down', '1600237980_download (1).jpg', 3, '2020-09-08');";
+    $sampleMovieData = "INSERT INTO `movies` (`id`, `title`, `poster_image`, `duration`, `release_date`,`room`) VALUES
+(1, 'The Matrix', '1600221180_matrix.jpg', 2.5, '2020-09-15',1),
+(4, 'The Wolf of Wall Street', '1600221240_img 2.jpg', 3.75, '2020-09-17',2),
+(5, 'Greatest Showman', '1600221900_images.jpg', 3, '2020-09-01',1),
+(6, 'Jaws', '1600221900_download.jpg', 2.75, '2020-07-22',2),
+(7, 'Extractions', '1600222080_extraction-20200423134825-19294.jpg', 3, '2020-09-02',1),
+(8, 'Avengers End Game', '1600222200_avengersendgame-20190417122917-18221.jpg', 3, '2020-05-12',1),
+(9, 'White House Down', '1600237980_download (1).jpg', 3, '2020-09-08',2);";
     mysqli_query($conn, $sampleMovieData);
 } else
     echo "Error creating database: " . mysqli_error($conn);

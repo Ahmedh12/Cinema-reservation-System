@@ -70,13 +70,13 @@ CREATE TABLE `movies` (
 --
 
 INSERT INTO `movies` (`id`, `title`, `cover_img`, `description`, `duration`, `date_showing`, `end_date`, `trailer_yt_link`) VALUES
-(1, 'The Matrix', '1600221180_matrix.jpg', 'Sample Movie', 2.5, '2020-09-15', '2020-11-30', ''),
-(4, 'The Wolf of Wall Street', '1600221240_img 2.jpg', 'Sample 2', 3.75, '2020-09-17', '2020-10-29', ''),
-(5, 'Greatest Showman', '1600221900_images.jpg', 'Greatest Showman', 3, '2020-09-01', '2020-11-25', ''),
-(6, 'Jaws', '1600221900_download.jpg', 'Jaws', 2.75, '2020-07-22', '2020-12-01', ''),
-(7, 'Extractions', '1600222080_extraction-20200423134825-19294.jpg', 'Extractions', 3, '2020-09-02', '2020-11-25', ''),
-(8, 'Avengers End Game', '1600222200_avengersendgame-20190417122917-18221.jpg', 'Avengers End Game', 3, '2020-05-12', '2020-10-01', ''),
-(9, 'White House Down', '1600237980_download (1).jpg', 'White House Down', 3, '2020-09-08', '2020-11-25', '');
+(1, 'The Matrix', '1600221180_matrix.jpg', 'Sample Movie', 2.5, '2021-09-15', '2022-11-30', ''),
+(2, 'The Wolf of Wall Street', '1600221240_img 2.jpg', 'Sample 2', 3.75, '2021-09-17', '2022-10-29', ''),
+(3, 'Greatest Showman', '1600221900_images.jpg', 'Greatest Showman', 3, '2021-09-01', '2022-11-25', ''),
+(4, 'Jaws', '1600221900_download.jpg', 'Jaws', 2.75, '2021-07-22', '2022-12-01', ''),
+(5, 'Extractions', '1600222080_extraction-20200423134825-19294.jpg', 'Extractions', 3, '2021-09-02', '2022-11-25', ''),
+(6, 'Avengers End Game', '1600222200_avengersendgame-20190417122917-18221.jpg', 'Avengers End Game', 3, '2021-05-12', '2022-10-01', ''),
+(7, 'White House Down', '1600237980_download (1).jpg', 'White House Down', 3, '2021-09-08', '2021-11-25', '');
 
 -- --------------------------------------------------------
 
