@@ -1,3 +1,5 @@
 <?php
 setcookie("LoggedIn", "", time() - 7200, "/");
-include("login.html");
+setcookie("user", "", time() - 7200, "/");
+include("home.php");
+?>

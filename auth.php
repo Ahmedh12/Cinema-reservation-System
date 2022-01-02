@@ -20,6 +20,7 @@ function signin($conn)
   $result = mysqli_query($conn, $sql) or die("Query unsuccessful");
   if (mysqli_fetch_array($result)) {
     setcookie("LoggedIn", "true", time() + 7200, "/");
+    setcookie("user", "$username", time() + 7200, "/");
     header("Location:index.php?page=loggedin");
   } else {
     header("Location:index.php?page=login");
@@ -53,9 +54,10 @@ function signup($conn)
     header("Location:index.php?page=login");
     echo '<script>alert("Email exists")</script>';
   } else {
-    $sql = "INSERT INTO users (`username`, `password`, `email`, `first_name`, `last_name`, `admin`, `request_admin`) VALUES ('$username', '$pass', '$email', '$fname', '$lname', 0, '$request')";
+    $sql = "INSERT INTO `users` (`username`, `password`, `email`, `first_name`, `last_name`, `admin`, `request_admin`) VALUES ('$username', '$pass', '$email', '$fname', '$lname', 0, $request)";
     mysqli_query($conn, $sql);
     setcookie("LoggedIn", "true", time() + 7200, "/");
+    setcookie("user", "$username", time() + 7200, "/");
     header("Location:index.php?page=loggedin");
   }
 }
