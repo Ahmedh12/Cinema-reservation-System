@@ -23,11 +23,29 @@ if (isset($_COOKIE["LoggedIn"])) {
         $sql = "INSERT INTO `reservations` (`user_name`, `room_id`, `movie_id`, `chair_id`) VALUES ('$username', $hall, $movie, $s)";
         mysqli_query($conn, $sql);
     }
-    print_r($seats);
-    echo $hall.$movie.$username;
-    echo "<h1>Reservation Confirmed -- Redirecting to home Page...</h1>";
-    header("Location:index.php?page=loggedin");
+
+    echo <<<EOL
+    <html>
+    <head>
+    <meta http-equiv="refresh" content="3;url=index.php?page=loggedin" />
+    <title>Page Moved</title>
+    </head>
+    <body>
+    <h1>Reservation Confirmed -- Redirecting to home Page...</h1>
+    </body>
+    </html>
+EOL;
 
 } else {
-    header("Location:index.php");
+    echo <<<EOL
+    <html>
+    <head>
+    <meta http-equiv="refresh" content="3;url=index.php" />
+    <title>Page Moved</title>
+    </head>
+    <body>
+    <h1>Redirecting to home Page...</h1>
+    </body>
+    </html>
+    EOL;
 }

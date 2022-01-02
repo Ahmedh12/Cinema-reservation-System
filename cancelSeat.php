@@ -22,12 +22,29 @@ if (isset($_COOKIE["LoggedIn"])) {
         $sql = "Delete from `reservations` where `user_name` = '$username' && `movie_id` = $movie && `room_id` = $hall && `chair_id`= $s";
         mysqli_query($conn, $sql);
     }
-    print_r($seats);
-    echo $hall.$movie.$username;
-    echo "<h1>Reservation Canceled -- Redirecting to home Page...</h1>";
-    header("Location:index.php?page=loggedin");
-    //sleep(3);
+
+    echo <<<EOL
+        <html>
+        <head>
+        <meta http-equiv="refresh" content="3;url=index.php?page=loggedin" />
+        <title>Page Moved</title>
+        </head>
+        <body>
+        <h1>Reservation Canceled -- Redirecting to home Page...</h1>
+        </body>
+        </html>
+    EOL;
 
 } else {
-    header("Location:index.php");
+    echo <<<EOL
+    <html>
+    <head>
+    <meta http-equiv="refresh" content="3;url=index.php" />
+    <title>Page Moved</title>
+    </head>
+    <body>
+    <h1>You are Not logged in-- Redirecting to home Page...</h1>
+    </body>
+    </html>
+    EOL;
 }
