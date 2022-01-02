@@ -33,17 +33,43 @@
                     </li>
                   </ul>
                 </div>
+
                 <div class="cont_text_inputs">
-                  <!-- <input
+                  <div
+                    style="
+                      display: flex;
+                      justify-content: space-between;
+                      align-items: center;
+                      padding-right: 10%;
+                      padding-left: 8%;
+                      padding-bottom: 5%;
+                    "
+                  >
+                    <div>
+                      manager
+                      <input
+                        type="radio"
+                        name="Role"
+                        value="manager"
+                      />
+                    </div>
+                    <div>
+                      customer
+                      <input
+                        type="radio"
+                        name="Role"
+                        value="customer"
+                      />
+                    </div>
+                  </div>
+
+                  <input
                     type="text"
                     class="input_form_sign"
-                    placeholder="Role"
-                    name="Role"
-                  /> -->
-                  <select name="AccountType" class="input_form_sign">
-                    <option value="User">User</option>
-                    <option value="Admin" selected>Admin</option>
-                  </select>
+                    placeholder="Email address"
+                    name="Email"
+                    id="Email"
+                  />
                   <input
                     type="username"
                     class="input_form_sign d_block active_inp"
@@ -81,19 +107,22 @@
                     placeholder="Last name"
                     name="lastName"
                   />
-                  <input
-                    type="text"
-                    class="input_form_sign"
-                    placeholder="Email address"
-                    name="Email"
-                    id="Email"
-                  />
+
+                  <!-- <input name="AccountType" class="input_form_sign">
+                    <option value="User">User</option>
+                    <option value="Admin" selected>Admin</option>
+                  </inp> -->
 
                   <span id="message" style="margin-left: 35%"></span>
                   <br />
                   <br />
                 </div>
                 <div class="cont_btn">
+                  <!-- <input type="radio" name="AccountType" />
+                  <label for="AccountType">manager </label>
+                  <input type="radio  " name="AccountType2" />
+                  <label for="AccountType2"> user</label> -->
+
                   <button type="submit" form="form1" class="btn_sign">
                     SIGN IN
                   </button>
