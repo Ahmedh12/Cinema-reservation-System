@@ -42,7 +42,13 @@ reserve.addEventListener("click", (e) => {
     })
     document.cookie = "reserved=" + strSeats;
     document.cookie = "hall=" + hall.value;
-    form.action = "pay.php";
+    if(seats.length != 0)
+    {
+      form.action = "pay.php";
+    }else
+    {
+      alert("Please Select a Chair to reserve");
+    }
   } else {
     alert("You are not logged in, please login and try again");
     form.action = "index.php";
@@ -60,7 +66,12 @@ cancel.addEventListener("click", (e) => {
     })
     document.cookie = "cancelled=" + strSeats;
     document.cookie = "hall=" + hall.value;
-    form.action = "cancelSeat.php";
+    if (seats.length != 0) {
+      form.action = "cancelSeat.php";
+    }else
+    {
+      alert("Please de-Select a Chair to cancel");
+    }
   } else {
     alert("You are not logged in, please login and try again");
     form.action = "index.php";

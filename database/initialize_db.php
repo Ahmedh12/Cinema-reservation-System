@@ -2,7 +2,7 @@
 error_reporting(-1);
 ini_set('display_errors', 'On');
 
-$conn = mysqli_connect("localhost", "root", "");
+$conn = mysqli_connect("localhost", "root", "mysql");
 if (!$conn) {
     die("Connection failed: " . mysqli_connect_errno());
 }
