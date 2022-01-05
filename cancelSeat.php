@@ -27,7 +27,7 @@ if (isset($_COOKIE["LoggedIn"])) {
         <html>
         <head>
         <meta http-equiv="refresh" content="3;url=index.php?page=loggedin" />
-        <title>Page Moved</title>
+        <title></title>
         </head>
         <body>
         <h1>Reservation Canceled -- Redirecting to home Page...</h1>
@@ -40,7 +40,7 @@ if (isset($_COOKIE["LoggedIn"])) {
     <html>
     <head>
     <meta http-equiv="refresh" content="3;url=index.php" />
-    <title>Page Moved</title>
+    <title></title>
     </head>
     <body>
     <h1>You are Not logged in-- Redirecting to home Page...</h1>
