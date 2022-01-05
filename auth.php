@@ -12,7 +12,6 @@ function signin($conn)
 {
   $username = $_GET["username"];
   $pass = $_GET["pass_us"];
-  $Role = $_GET["Role"];
   $sql = ("SELECT * FROM users WHERE `username`='{$username}' AND `password`='{$pass}'");
   $result = mysqli_query($conn, $sql) or die("Query unsuccessful");
   if (mysqli_fetch_array($result)) {
@@ -21,7 +20,6 @@ function signin($conn)
     header("Location:index.php?page=loggedin");
   } else {
     header("Location:index.php?page=login");
-    echo '"invalid account data"';
   }
   return;
 }
