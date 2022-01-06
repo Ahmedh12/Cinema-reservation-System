@@ -59,6 +59,7 @@ if (mysqli_query($conn, "CREATE DATABASE IF NOT EXISTS theater_db")) {
     Foreign Key (`movie_id`) References `movies`(`id`),
     `start_time` time NOT NULL,
     `end_time` time NOT NULL,
+    `show_date` date NOT NULL,
     `room_id` int(11) NOT NULL
 )"
     );
