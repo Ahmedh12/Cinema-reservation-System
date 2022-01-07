@@ -1,6 +1,7 @@
 <?php
 include 'admin/db_connect.php';
-$movies = $conn->query("SELECT * FROM movies  limit 10");
+$movies = $conn->query("SELECT * FROM movies  limit 20");
+
 ?>
 
 <head>
@@ -40,6 +41,10 @@ $movies = $conn->query("SELECT * FROM movies  limit 10");
     .editmovie {
         margin-left: 33.5%;
     }
+
+    .options {
+        display: inline;
+    }
     </style>
 </head>
 
@@ -56,8 +61,12 @@ $movies = $conn->query("SELECT * FROM movies  limit 10");
             <div class="movie-item">
                 <img class="" src="assets/img/<?php echo $row['poster_image']  ?>" alt="<?php echo $row['title'] ?>">
                 <div class="mov-det">
-                    <button class="btn btn-primary details">Details <?php $movieName=$row['title'] ?></button> <button
-                        class="btn btn-primary edit">Edit</button>
+                    <form action="amovie_details.php" method="GET" id="removemovie">
+                        <input type="text" class="input_data hidden" name="title" id="title"
+                            value="<?php echo $row['title'] ?>" />
+                        <button type="submit" form="removemovie"
+                            class="btn btn-primary details options">Details</button>
+                    </form> <button class="btn btn-primary edit options">Edit</button>
                 </div>
             </div>
             <?php endwhile; ?>
@@ -66,55 +75,6 @@ $movies = $conn->query("SELECT * FROM movies  limit 10");
             <a href="javascript:void(0)" class="text"><i class="fa fa-angle-right"></i></a>
         </div>
     </div>
-</div>
-
-<div class="movie_details">
-    <center>
-        <h3 class="text-primary">Details</h3>
-    </center>
-    <?php
-          $sql = ("SELECT * FROM movies WHERE `title`='{$movieName}'");
-          $result = mysqli_query($conn, $sql) or die("Unsuccessful Movie Selection.");
-          $fetched_movie_id = mysqli_fetch_array($result);
-          if ($fetched_movie_id) {
-            $movie_id = $fetched_movie_id[0];
-            $title = $fetched_movie_id[1];
-            $duration = $fetched_movie_id[2];
-            $date = $fetched_movie_id[3];
-            // $startTime = $fetched_movie_id[0];
-            // $endTime = $fetched_movie_id[0];
-            $startTime ="Start Time";
-            $endTime = "End Time";
-            $screeningRoom = $fetched_movie_id[4];
-            $posterImage = $fetched_movie_id[5];
-
-            // echo $movie_id.'<br>';
-            // echo $title.'<br>';
-            // echo $duration.'<br>';
-            // echo $date.'<br>';
-            // echo $screeningRoom.'<br>';
-            // echo $posterImage.'<br>';
-            
-          } else {
-              echo "Failed to retrieve '".$movieName."'.<br>";
-              return;
-          }
-    ?>
-    <div class="details_content">
-        <label class="detailsInfo">Name: </label> <span class="detailsInfo2"><?php echo $title.'<br>'; ?></span>
-        <label class="detailsInfo">Show date: </label> <span class="detailsInfo2"><?php echo $date.'<br>'; ?></span>
-        <label class="detailsInfo">Start Time: </label> <span
-            class="detailsInfo2"><?php echo $startTime.'<br>'; ?></span>
-        <label class="detailsInfo">End Time: </label> <span class="detailsInfo2"><?php echo $endTime.'<br>'; ?></span>
-        <label class="detailsInfo">Duration: </label> <span class="detailsInfo2"><?php echo $duration.'<br>'; ?></span>
-        <label class="detailsInfo">Screening Room: </label> <span
-            class="detailsInfo2"><?php echo $screeningRoom.'<br>'; ?></span>
-        <label class="detailsInfo">Poster Image: </label> <span
-            class="detailsInfo2"><?php echo $posterImage.'<br>'; ?></span>
-    </div>
-    <center>
-        <h3 class="footer">Refresh To Go Back</h3>
-    </center>
 </div>
 
 <div class="edit_movie">
@@ -152,12 +112,7 @@ $movies = $conn->query("SELECT * FROM movies  limit 10");
 $(document).ready(function() {
     $('.movie_details').hide();
     $('.edit_movie').hide();
-})
-
-$('.details').click(function() {
-    $('.movie_details').show();
-    $('.all_movies').hide();
-    $('.edit_movie').hide();
+    $('.hidden').hide();
 })
 
 $('.edit').click(function() {
@@ -166,16 +121,27 @@ $('.edit').click(function() {
     $('.movie_details').hide();
 })
 
+// $('.details').click(function() {
+//     // var title = $(this).data("title");
+//     $.get("amovie_details.php", {
+//         title: $(this).data("title")
+//     });
+//     header("location:amovie_details");
+//     // location.replace('index.php?page=amovie_details.php?title=' + $(this).attr('data-title'))
+// })
+
 $('#movie-carousel-field .list-next').click(function() {
     $('#movie-carousel-field .list').animate({
-        scrollLeft: $('#movie-carousel-field .list').scrollLeft() + ($('#movie-carousel-field .list')
+        scrollLeft: $('#movie-carousel-field .list').scrollLeft() + ($(
+                '#movie-carousel-field .list')
             .find('img').width() * 3)
     }, 'slow');
 })
 
 $('#movie-carousel-field .list-prev').click(function() {
     $('#movie-carousel-field .list').animate({
-        scrollLeft: $('#movie-carousel-field .list').scrollLeft() - ($('#movie-carousel-field .list')
+        scrollLeft: $('#movie-carousel-field .list').scrollLeft() - ($(
+                '#movie-carousel-field .list')
             .find('img').width() * 3)
     }, 'slow');
 })
