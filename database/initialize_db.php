@@ -2,7 +2,7 @@
 error_reporting(-1);
 ini_set('display_errors', 'On');
 
-$conn = mysqli_connect("localhost", "root", "mysql");
+$conn = mysqli_connect("localhost", "root", "mira2000");
 if (!$conn) {
     die("Connection failed: " . mysqli_connect_errno());
 }
@@ -74,6 +74,11 @@ if (mysqli_query($conn, "CREATE DATABASE IF NOT EXISTS theater_db")) {
 (8, 'Avengers End Game', '1600222200_avengersendgame-20190417122917-18221.jpg', 3, '2020-05-12',1),
 (9, 'White House Down', '1600237980_download (1).jpg', 3, '2020-09-08',2);";
     mysqli_query($conn, $sampleMovieData);
+
+    $sampleRoomData = "INSERT INTO `rooms` (`id`, `room_number`, `totalchairs`) VALUES
+    (1, 3, 20);";
+    mysqli_query($conn, $sampleRoomData);
+
 } else
     echo "Error creating database: " . mysqli_error($conn);
 

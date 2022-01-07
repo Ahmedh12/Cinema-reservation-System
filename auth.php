@@ -7,22 +7,31 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   signin($conn);
 }
 
-
 function signin($conn)
 {
   $username = $_GET["username"];
   $pass = $_GET["pass_us"];
   $sql = ("SELECT * FROM users WHERE `username`='{$username}' AND `password`='{$pass}'");
   $result = mysqli_query($conn, $sql) or die("Query unsuccessful");
-  if (mysqli_fetch_array($result)) {
-    setcookie("LoggedIn", "true", time() + 7200, "/");
+  $fetched = mysqli_fetch_array($result);
+  if ($fetched) {
+    $role = $fetched[6];
     setcookie("user", "$username", time() + 7200, "/");
-    header("Location:index.php?page=loggedin");
+
+    if($role == 0) {
+      setcookie("LoggedIn", "true", time() + 7200, "/");
+      header("Location:index.php?page=loggedin");
+    } else if($role == 1) {
+      setcookie("manager", "true", time() + 7200, "/");
+      header("Location:index.php?page=manager");
+    }
+    
   } else {
     header("Location:index.php?page=login");
   }
   return;
 }
+
 function signup($conn)
 {
   $fname = $_POST["firstName"];
@@ -46,10 +55,17 @@ function signup($conn)
   } elseif (mysqli_fetch_array($result2)) {
     header("Location:index.php?page=login");
   } else {
-    $sql = "INSERT INTO `users` (`username`, `password`, `email`, `first_name`, `last_name`, `admin`, `request_admin`) VALUES ('$username', '$pass', '$email', '$fname', '$lname', 0, $request)";
+    $sql = "INSERT INTO `users` (`username`, `password`, `email`, `first_name`, `last_name`, `admin`, `request_admin`) VALUES ('$username', '$pass', '$email', '$fname', '$lname', $request, $request)";
     mysqli_query($conn, $sql);
-    setcookie("LoggedIn", "true", time() + 7200, "/");
     setcookie("user", "$username", time() + 7200, "/");
-    header("Location:index.php?page=loggedin");
+    if($request == 0) {
+      setcookie("LoggedIn", "true", time() + 7200, "/");
+      header("Location:index.php?page=loggedin");
+    } else if($request == 1) {
+      setcookie("manager", "true", time() + 7200, "/");
+      header("Location:index.php?page=manager");
+    }
   }
 }
+
+/* 1-> Admin. 0 -> Normal user*/

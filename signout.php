@@ -1,5 +1,6 @@
 <?php
 setcookie("LoggedIn", "", time() - 7200, "/");
+setcookie("manager", "", time() - 7200, "/");
 setcookie("user", "", time() - 7200, "/");
 echo <<<EOL
     <html>
