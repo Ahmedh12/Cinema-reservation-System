@@ -18,8 +18,8 @@ if (mysqli_query($conn, "CREATE DATABASE IF NOT EXISTS theater_db")) {
     `email` varchar(50) NOT NULL,
     `first_name` varchar(50) NOT NULL,
     `last_name` varchar(50) NOT NULL,
-    `admin` bit NOT NULL, /* 1-> Admin. 0 -> Normal user*/
-    `request_admin` bit NOT NULL /*v->requested, 0-> rejected or not requested.*/
+    `admin` bit NOT NULL, /* 1-> Manager. 0 -> Normal user*/
+    `site_admin` bit NOT NULL /*1-> Site Admin, 0-> Normal user or Manager*/
 );",
 
         "CREATE TABLE IF NOT EXISTS `movies` (
