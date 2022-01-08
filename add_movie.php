@@ -13,8 +13,6 @@ function insert_movie($conn)
   $endTime = $_POST["endTime"];
   $screeningRoom = $_POST["screeningRoom"];
   $image = $_POST["posterImage"];
-  // $duration = $endTime - $startTime;
-  $duration = 2;
 
   $sql1 = ("SELECT * FROM rooms WHERE `room_number`='{$screeningRoom}'");
   $result = mysqli_query($conn, $sql1) or die("Unsuccessful Room Selection.");
@@ -37,16 +35,15 @@ function insert_movie($conn)
     //   echo $endTime."<br>";
     //   echo $screeningRoom."<br>";
     //   echo $image."<br>";
-    //   echo $duration."<br>";
     //   echo $fetched_room_id[0]."<br>";
     //   echo $fetched_room_id[1]."<br>";
 
-  $sql2 = "INSERT INTO `movies` (`title`, `duration`, `release_date`, `room`, `poster_image`) VALUES ('$title', '$duration', '$date', '$screeningRoom', '$image')";
+  $sql2 = "INSERT INTO `movies` (`title`, `room`, `poster_image`) VALUES ('$title', '$screeningRoom', '$image')";
   mysqli_query($conn, $sql2);
   if(mysqli_query($conn, $sql2)) {
       echo "Successful insertion into the movies table.<br>";
 
-      $sql3 = ("SELECT * FROM movies WHERE `title`='{$title}' AND `release_date`='{$date}' AND `room`='{$screeningRoom}'");
+      $sql3 = ("SELECT * FROM movies WHERE `title`='{$title}' AND `room`='{$screeningRoom}'");
       $result = mysqli_query($conn, $sql3) or die("Unsuccessful Movie Selection.");
       $fetched_movie_id = mysqli_fetch_array($result);
       if ($fetched_movie_id) {
@@ -55,7 +52,7 @@ function insert_movie($conn)
           return;
       } 
       
-      $sql4 = "INSERT INTO `show_times` (`movie_id`, `start_time`, `end_time`, `room_id`) VALUES ('$movie_id', '$startTime', '$endTime', '$room_id')";
+      $sql4 = "INSERT INTO `show_times` (`movie_id`, `start_time`, `end_time`, `show_date`, `room_id`) VALUES ('$movie_id', '$startTime', '$endTime', '$date', '$room_id')";
       mysqli_query($conn, $sql4);
       if(mysqli_query($conn, $sql4)) {
           echo "Successful insertion into the showTimes table.<br>You Can Go Back Now.";
@@ -102,16 +99,15 @@ function edit_movie($conn)
       //   echo $endTime."<br>";
       //   echo $screeningRoom."<br>";
       //   echo $image."<br>";
-      //   echo $duration."<br>";
       //   echo $fetched_room_id[0]."<br>";
       //   echo $fetched_room_id[1]."<br>";
   
-    $sql2 = "INSERT INTO `movies` (`title`, `duration`, `release_date`, `room`, `poster_image`) VALUES ('$title', '$duration', '$date', '$screeningRoom', '$image')";
+    $sql2 = "INSERT INTO `movies` (`title`, `show_date`, `room`, `poster_image`) VALUES ('$title', '$date', '$screeningRoom', '$image')";
     mysqli_query($conn, $sql2);
     if(mysqli_query($conn, $sql2)) {
         echo "Successful insertion into the movies table.<br>";
   
-        $sql3 = ("SELECT * FROM movies WHERE `title`='{$title}' AND `release_date`='{$date}' AND `room`='{$screeningRoom}'");
+        $sql3 = ("SELECT * FROM movies WHERE `title`='{$title}' AND `show_date`='{$date}' AND `room`='{$screeningRoom}'");
         $result = mysqli_query($conn, $sql3) or die("Unsuccessful Movie Selection.");
         $fetched_movie_id = mysqli_fetch_array($result);
         if ($fetched_movie_id) {
@@ -149,7 +145,7 @@ function edit_movie($conn)
                         // echo "Successful insertion into the showTimes table.<br>You Can Go Back Now.";
                     }
                     else {
-                        edit_movie($conn);
+                        // edit_movie($conn);
                         echo "Successful Update.<br>You Can Go Back Now.";
                     }
                     ?>
