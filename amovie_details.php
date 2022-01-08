@@ -1,6 +1,5 @@
 <!-- 
-    POST => movie details
-    GET  => remove movie 
+    GET => movie details
 -->
 
 <?php
@@ -9,8 +8,6 @@ session_start();
 
 function movie_details($conn)
 {
-    // echo "<h1 style='color: #fff;'>Starting</h1><br>";
-
     $movieName = $_GET['title'];
     $sql = ("SELECT * FROM movies WHERE `title`='{$movieName}'");
     $result = mysqli_query($conn, $sql) or die("Unsuccessful Movie Selection.");
@@ -21,10 +18,8 @@ function movie_details($conn)
     }      
     $movie_id = $fetched_movie_id[0];
     $title = $fetched_movie_id[1];
-    $duration = $fetched_movie_id[2];
-    $date = $fetched_movie_id[3];
-    $screeningRoom = $fetched_movie_id[4];
-    $posterImage = $fetched_movie_id[5];
+    $screeningRoom = $fetched_movie_id[2];
+    $posterImage = $fetched_movie_id[3];
         
     $sql = ("SELECT * FROM rooms WHERE `room_number`='{$screeningRoom}'");
     $result = mysqli_query($conn, $sql) or die("Unsuccessful Room Selection.");
@@ -34,14 +29,6 @@ function movie_details($conn)
         return;
     }
     $room_id = $fetched_room_id[0];
-    
-    // echo $movie_id.'<br>';
-    // echo $title.'<br>';
-    // echo $duration.'<br>';
-    // echo $date.'<br>';
-    // echo $screeningRoom.'<br>';
-    // echo $posterImage.'<br>';
-    // echo $room_id.'<br>';
             
     $sql = ("SELECT * FROM show_times WHERE `movie_id`='{$movie_id}' AND `room_id`='{$room_id}'");
     // $sql = ("SELECT * FROM show_times WHERE `id`=1");
@@ -53,6 +40,17 @@ function movie_details($conn)
     }
     $startTime = $fetched_show_id[2];
     $endTime = $fetched_show_id[3];
+    $date = $fetched_show_id[4];
+    // $startTime = '11:00:00';
+    // $endTime = '12:45:00';
+    $duration = (strtotime($endTime) - strtotime($startTime)) / 3600;
+
+    // echo $movie_id.'<br>';
+    // echo $title.'<br>';
+    // echo $date.'<br>';
+    // echo $screeningRoom.'<br>';
+    // echo $posterImage.'<br>';
+    // echo $room_id.'<br>';
 
     $_SESSION["title"] = $title;
     $_SESSION["date"] = $date;
@@ -125,9 +123,9 @@ function destroy_session()
                     class="detailsInfo2"><?php echo $_SESSION["title"].'<br>'; ?></span>
                 <label class="detailsInfo">Show date: </label> <span
                     class="detailsInfo2"><?php echo $_SESSION["date"].'<br>'; ?></span>
-                <label class="detailsInfo">Start Time: </label> <span
+                <label class="detailsInfo">From: </label> <span
                     class="detailsInfo2"><?php echo $_SESSION["startTime"].'<br>'; ?></span>
-                <label class="detailsInfo">End Time: </label> <span
+                <label class="detailsInfo">To: </label> <span
                     class="detailsInfo2"><?php echo $_SESSION["endTime"].'<br>'; ?></span>
                 <label class="detailsInfo">Duration: </label> <span
                     class="detailsInfo2"><?php echo $_SESSION["duration"].'<br>'; ?></span>
@@ -143,14 +141,14 @@ function destroy_session()
 
 </html>
 
-<script>
+<!-- <script>
 $(document).ready(function() {
     $('img').animate({
         height: '+=50%',
         width: '+=50%'
     });
 })
-</script>
+</script> -->
 
 <!-- <div class="container">
     <p style="font-size: 200%; font-family: sans-serif; color: #fff; margin: 25%; margin-top: 18%; text-align: center;"

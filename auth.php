@@ -55,7 +55,7 @@ function signup($conn)
   } elseif (mysqli_fetch_array($result2)) {
     header("Location:index.php?page=login");
   } else {
-    $sql = "INSERT INTO `users` (`username`, `password`, `email`, `first_name`, `last_name`, `admin`, `request_admin`) VALUES ('$username', '$pass', '$email', '$fname', '$lname', $request, $request)";
+    $sql = "INSERT INTO `users` (`username`, `password`, `email`, `first_name`, `last_name`, `admin`, `site_admin`) VALUES ('$username', '$pass', '$email', '$fname', '$lname', $request, $request)";
     mysqli_query($conn, $sql);
     setcookie("user", "$username", time() + 7200, "/");
     if($request == 0) {

@@ -16,7 +16,7 @@ if (isset($_COOKIE["user"])) {
 //querying the reserved seats for a specific movie
 $res = $conn->query("select chair_id from reservations where room_id = 2 && movie_id=".$_GET['id']);
 $seats = array();
-while ($row = $res->fetch_array()) {
+while ($res && $row = $res->fetch_array()) {
   array_push($seats, $row[0]);
 }
 
@@ -26,37 +26,38 @@ $mov = $conn->query("SELECT * FROM movies where id =" . $_GET['id'])->fetch_asso
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <title>Hall 1</title>
-  <link rel="stylesheet" href="css/styles.css">
-  <link rel="stylesheet" href="css/hall.css">
+    <meta charset="UTF-8">
+    <title>Hall 1</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/hall.css">
 </head>
 
 <div>
-  <img style="padding:50px" src="assets/img/<?php echo $mov['poster_image'] ?>" alt="" height=250px>
+    <img style="padding:50px" src="assets/img/<?php echo $mov['poster_image'] ?>" alt="" height=250px>
 </div>
 
 <ul class="showcase">
-  <li>
-    <div class="seat"></div>
-    <small>Available</small>
-  </li>
-  <li>
-    <div class="seat selected"></div>
-    <small>Selected</small>
-  </li>
-  <li>
-    <div class="seat occupied"></div>
-    <small>Occupied</small>
-  </li>
+    <li>
+        <div class="seat"></div>
+        <small>Available</small>
+    </li>
+    <li>
+        <div class="seat selected"></div>
+        <small>Selected</small>
+    </li>
+    <li>
+        <div class="seat occupied"></div>
+        <small>Occupied</small>
+    </li>
 </ul>
 
 <!--Hall Graphical Display Generation-->
 <div class="container-hall">
 
-  <div class="screen"></div>
-  <?php
+    <div class="screen"></div>
+    <?php
   $row = 4;
   $col = 5;
   $id  = 0;
@@ -78,22 +79,22 @@ $mov = $conn->query("SELECT * FROM movies where id =" . $_GET['id'])->fetch_asso
 </div>
 
 <p class="text" style="text-align: center;">
-  You have selected <span id="count">0</span> seats<br>
+    You have selected <span id="count">0</span> seats<br>
 </p>
 
 <div>
-  <form action="" method="post" id="res">
-    <input type="text" id="hall" name="hall" hidden value="2">
-    <input type="text" id="movie" name="movie" hidden value="<?php echo $_GET['id'] ?>">
-    <button class="btn btn-lg btn-success" id="reserve">
-      Reserve
-    </button>
-    <?php if(!empty($Userseats))
+    <form action="" method="post" id="res">
+        <input type="text" id="hall" name="hall" hidden value="2">
+        <input type="text" id="movie" name="movie" hidden value="<?php echo $_GET['id'] ?>">
+        <button class="btn btn-lg btn-success" id="reserve">
+            Reserve
+        </button>
+        <?php if(!empty($Userseats))
     {
       echo '<button class="btn btn-lg btn-danger" id="cancel">Cancel</button>';
     }
     ?>
-  </form>
+    </form>
 </div>
 
 
