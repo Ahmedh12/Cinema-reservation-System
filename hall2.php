@@ -8,7 +8,7 @@ if (isset($_COOKIE["user"])) {
   $username = $_COOKIE["user"];
   
   $res = $conn->query("select chair_id from `reservations` movies where room_id = 2 && user_name='$username' && movie_id=".$_GET['id']);
-  while ($row = $res->fetch_array()) {
+  while ($res && $row = $res->fetch_array()) {
     array_push($Userseats, $row[0]);
   }
 }
