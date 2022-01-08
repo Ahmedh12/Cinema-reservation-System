@@ -16,7 +16,7 @@ if (isset($_COOKIE["user"])) {
 //querying the reserved seats for a specific movie
 $res = $conn->query("select chair_id from reservations where room_id = 1 && movie_id=".$_GET['id']);
 $seats = array();
-while ($row = $res->fetch_array()) {
+while ($res && $row = $res->fetch_array()) {
   array_push($seats, $row[0]);
 }
 
