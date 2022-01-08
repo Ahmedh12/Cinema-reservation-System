@@ -78,9 +78,16 @@ $mov = $conn->query("SELECT * FROM movies where id =" . $_GET['id'])->fetch_asso
   ?>
 </div>
 
-<p class="text" style="text-align: center;">
-    You have selected <span id="count">0</span> seats<br>
-</p>
+<?php
+    if (isset($_COOKIE["user"])) {
+      $username = $_COOKIE["user"];
+    }
+    if(!(isset($_COOKIE['manager'])))
+    {
+      echo '<p class="text" style="text-align: center;">You have selected <span id="count">0</span> seats<br></p>';
+    }
+    
+    ?>
 
 <div>
   <form action="" method="post" id="res">
@@ -90,16 +97,14 @@ $mov = $conn->query("SELECT * FROM movies where id =" . $_GET['id'])->fetch_asso
 
 
     <?php
-
-      if (isset($_COOKIE["user"])) {
+    if (isset($_COOKIE["user"])) {
       $username = $_COOKIE["user"];
-      }
-      $isManager=$_COOKIE["manager"];
-
-      if(!$isManager)
-      {
+    }
+    if(!(isset($_COOKIE['manager'])))
+    {
       echo '<button class="btn btn-lg btn-success" id="reserve">Reserve</button>';
-      }
+    }
+    
     ?>
     
     <?php if(!empty($Userseats))
