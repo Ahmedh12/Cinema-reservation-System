@@ -14,8 +14,10 @@ if (mysqli_query($conn, "CREATE DATABASE IF NOT EXISTS theater_db")) {
     `id` int(11) NOT NULL AUTO_INCREMENT,
     PRIMARY KEY (`id`),
     `username` varchar(50) NOT NULL,
+    UNIQUE(`username`),
     `password` varchar(50) NOT NULL,
     `email` varchar(50) NOT NULL,
+    UNIQUE(`email`),
     `first_name` varchar(50) NOT NULL,
     `last_name` varchar(50) NOT NULL,
     `admin` bit NOT NULL, /* 1-> Manager. 0 -> Normal user*/
@@ -41,8 +43,10 @@ if (mysqli_query($conn, "CREATE DATABASE IF NOT EXISTS theater_db")) {
         "CREATE TABLE IF NOT EXISTS `reservations` (
     `id` int(11) NOT NULL AUTO_INCREMENT,
     PRIMARY KEY (`id`),
-    `user_id` int(11) NOT NULL,
-    FOREIGN KEY (`user_id`) REFERENCES `users`(`id`),
+    `user_name` int(11) NOT NULL,
+    FOREIGN KEY (`user_name`) REFERENCES `users`(`username`),
+    `movie_id` int(11) NOT NULL,
+    FOREIGN KEY (`movie_id`) REFERENCES `movies`(`id`),
     `room_id` int(11) NOT NULL,
     FOREIGN KEY (`room_id`) REFERENCES `rooms`(`id`),
     `chair_id` int(11) NOT NULL
