@@ -90,22 +90,36 @@ $mov = $conn->query("SELECT * FROM movies where id =" . $_GET['id'])->fetch_asso
   ?>
 </div>
 
-<p class="text" style="text-align: center;">
-  You have selected <span id="count">0</span> seats<br>
-</p>
+<?php
+  // if (isset($_COOKIE["user"])) {
+  //   $username = $_COOKIE["user"];
+  // }
+  if(!isset($_COOKIE["manager"]))
+  {
+    echo '<p class="text" style="text-align: center;">You have selected <span id="count">0</span> seats<br></p>';
+  }
+?>
 
 <div>
-  <form action="" method="post" id="res">
-    <input type="text" id="hall" name="hall" hidden value="2">
-    <input type="text" id="movie" name="movie" hidden value="<?php echo $_GET['id'] ?>">
-    <button class="btn btn-lg btn-success" id="reserve">
-      Reserve
-    </button>
-    <?php if (!empty($Userseats)) {
-      echo '<button class="btn btn-lg btn-danger" id="cancel">Cancel</button>';
-    }
-    ?>
-  </form>
+
+    <form action="" method="post" id="res">
+        <input type="text" id="hall" name="hall" hidden value="2">
+        <input type="text" id="movie" name="movie" hidden value="<?php echo $_GET['id'] ?>">
+
+        <?php
+            if(!isset($_COOKIE["manager"]))
+            {
+            echo '<button class="btn btn-lg btn-success" id="reserve">Reserve</button>';
+            }
+        ?>
+
+        <?php if(!empty($Userseats))
+          {
+            echo '<button class="btn btn-lg btn-danger" id="cancel">Cancel</button>';
+          }
+        ?>
+
+    </form>
 </div>
 
 
