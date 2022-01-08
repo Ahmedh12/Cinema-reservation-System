@@ -135,7 +135,7 @@ function verifications($title, $date, $startTime, $endTime, $screeningRoom, $ima
 
 function edit_movie($conn)
 {
-    $id;
+    $id = $_GET["id"];
     $title = $_GET["title"];
     $date = $_GET["date"];
     $startTime = $_GET["startTime"];
@@ -143,23 +143,23 @@ function edit_movie($conn)
     $screeningRoom = $_GET["screeningRoom"];
     $image = $_GET["posterImage"];
 
-    $sql1 = ("SELECT * FROM movies WHERE `title`='{$title}' AND `room`='{$screeningRoom}' AND `poster_image`='{$image}'");
-    $result = mysqli_query($conn, $sql1) or die("Unsuccessful Movie id Selection.");
-    // if(!mysqli_query($conn, $sql1)) {
-    //     echo "Movie not retrieved.<br>";
-    //     return;
-    // } else {
-    //     echo "Movie retrieved.<br>";
-    // }
-    $fetched_movie_id = mysqli_fetch_array($result);
-    echo "Result: ".$fetched_movie_id."<br>";
+    // $sql1 = ("SELECT * FROM movies WHERE `title`='{$title}' AND `room`='{$screeningRoom}' AND `poster_image`='{$image}'");
+    // $result = mysqli_query($conn, $sql1) or die("Unsuccessful Movie id Selection.");
+    // // if(!mysqli_query($conn, $sql1)) {
+    // //     echo "Movie not retrieved.<br>";
+    // //     return;
+    // // } else {
+    // //     echo "Movie retrieved.<br>";
+    // // }
+    // $fetched_movie_id = mysqli_fetch_array($result);
+    // echo "Result: ".$fetched_movie_id."<br>";
 
-    if ($fetched_movie_id) {
-        $id = $fetched_movie_id[1];
-        echo $id;
-    } else {
-        echo "ID not retrieved.<br>";
-    }
+    // if ($fetched_movie_id) {
+    //     $id = $fetched_movie_id[1];
+    //     echo $id;
+    // } else {
+    //     echo "ID not retrieved.<br>";
+    // }
 
     if($title) {
         $update = "UPDATE `movies` SET `title`='{$title}' WHERE `id`='{$id}';";
