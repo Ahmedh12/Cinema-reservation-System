@@ -61,10 +61,10 @@ $movies = $conn->query("SELECT * FROM movies  limit 20");
             <div class="movie-item">
                 <img class="" src="assets/img/<?php echo $row['poster_image']  ?>" alt="<?php echo $row['title'] ?>">
                 <div class="mov-det">
-                    <form action="amovie_details.php" method="GET" id="removemovie_<?php echo $row['title'];?>">
+                    <form action="amovie_details.php" method="GET" id="<?php echo $row['title'];?>">
                         <input type="text" class="input_data hidden" name="title" id="title"
                             value="<?php echo $row['title'] ?>" />
-                        <button type="submit" form="removemovie_<?php echo $row['title'];?>"
+                        <button type="submit" form="<?php echo $row['title'];?>"
                             class="btn btn-primary details options">Details</button>
                     </form> <button class="btn btn-primary edit options"
                         style="position:relative; left:200px; bottom:62px;">Edit</button>
@@ -114,7 +114,6 @@ $movies = $conn->query("SELECT * FROM movies  limit 20");
 
 <script>
 $(document).ready(function() {
-    $('.movie_details').hide();
     $('.edit_movie').hide();
     $('.hidden').hide();
 })
@@ -122,7 +121,6 @@ $(document).ready(function() {
 $('.edit').click(function() {
     $('.edit_movie').show();
     $('.all_movies').hide();
-    $('.movie_details').hide();
 })
 
 // $('.details').click(function() {
