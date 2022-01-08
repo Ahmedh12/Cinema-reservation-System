@@ -18,10 +18,11 @@ $movies = $conn->query("SELECT * FROM movies  limit 10");
         <div class="movie-item">
             <img class="" src="assets/img/<?php echo $row['poster_image']  ?>" alt="<?php echo $row['title'] ?>">
             <div class="mov-det">
-                <form action="amovie_details.php" method="GET" id="movieDetails">
+                <form action="amovie_details.php" method="GET" id="<?php echo $row['title'];?>">
                     <input type="text" class="input_data hidden" name="title" id="title"
                         value="<?php echo $row['title'] ?>" />
-                    <button type="submit" form="movieDetails" class="btn btn-primary details options">Details</button>
+                    <button type="submit" form="<?php echo $row['title'];?>"
+                        class="btn btn-primary details options">Details</button>
                 </form> <button type="button" style="position:relative; bottom:120px; ; left:60px"
                     class="btn btn-primary" data-id="<?php echo $row['id'] . $row['room'] ?>">Reserve Seat</button>
 
