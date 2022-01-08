@@ -6,15 +6,15 @@ $Userseats = array();
 //allowing a logged user to edit his reserved seats if any
 if (isset($_COOKIE["user"])) {
   $username = $_COOKIE["user"];
-  
-  $res = $conn->query("select chair_id from `reservations` movies where room_id = 1 && user_name='$username' && movie_id=".$_GET['id']);
+
+  $res = $conn->query("select chair_id from `reservations` movies where room_id = 1 && user_name='$username' && movie_id=" . $_GET['id']);
   while ($res && $row = $res->fetch_array()) {
     array_push($Userseats, $row[0]);
   }
 }
 
 //querying the reserved seats for a specific movie
-$res = $conn->query("select chair_id from reservations where room_id = 1 && movie_id=".$_GET['id']);
+$res = $conn->query("select chair_id from reservations where room_id = 1 && movie_id=" . $_GET['id']);
 $seats = array();
 while ($res && $row = $res->fetch_array()) {
   array_push($seats, $row[0]);
@@ -35,7 +35,7 @@ $mov = $conn->query("SELECT * FROM movies where id =" . $_GET['id'])->fetch_asso
 </head>
 
 <div>
-    <img style="padding:50px" src="assets/img/<?php echo $mov['poster_image'] ?>" alt="" height=250px>
+  <img style="padding:50px" src="assets/img/<?php echo $mov['poster_image'] ?>" alt="" height=150px>
 </div>
 
 <ul class="showcase">
@@ -78,19 +78,38 @@ $mov = $conn->query("SELECT * FROM movies where id =" . $_GET['id'])->fetch_asso
   ?>
 </div>
 
-<p class="text" style="text-align: center;">
-    You have selected <span id="count">0</span> seats<br>
-</p>
+
+<?php
+    if (isset($_COOKIE["user"])) {
+      $username = $_COOKIE["user"];
+    }
+    if(!(isset($_COOKIE['manager'])))
+    {
+      echo '<p class="text" style="text-align: center;">You have selected <span id="count">0</span> seats<br></p>';
+    }
+    
+    ?>
+
 
 <div>
-    <form action="" method="post" id="res">
-        <input type="text" id="hall" name="hall" hidden value="1">
-        <input type="text" id="movie" name="movie" hidden value="<?php echo $_GET['id'] ?>">
-        <button class="btn btn-lg btn-success" id="reserve">
-            Reserve
-        </button>
-        <?php if(!empty($Userseats))
+  <form action="" method="post" id="res">
+    <input type="text" id="hall" name="hall" hidden value="1">
+    <input type="text" id="movie" name="movie" hidden value="<?php echo $_GET['id'] ?>">
+
+
+    <?php
+    if (isset($_COOKIE["user"])) {
+      $username = $_COOKIE["user"];
+    }
+    if(!(isset($_COOKIE['manager'])))
     {
+      echo '<button class="btn btn-lg btn-success" id="reserve">Reserve</button>';
+    }
+    
+    ?>
+
+
+    <?php if (!empty($Userseats)) {
       echo '<button class="btn btn-lg btn-danger" id="cancel">Cancel</button>';
     }
     ?>

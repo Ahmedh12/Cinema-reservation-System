@@ -83,13 +83,26 @@ $mov = $conn->query("SELECT * FROM movies where id =" . $_GET['id'])->fetch_asso
 </p>
 
 <div>
-    <form action="" method="post" id="res">
-        <input type="text" id="hall" name="hall" hidden value="2">
-        <input type="text" id="movie" name="movie" hidden value="<?php echo $_GET['id'] ?>">
-        <button class="btn btn-lg btn-success" id="reserve">
-            Reserve
-        </button>
-        <?php if(!empty($Userseats))
+  <form action="" method="post" id="res">
+    <input type="text" id="hall" name="hall" hidden value="2">
+    <input type="text" id="movie" name="movie" hidden value="<?php echo $_GET['id'] ?>">
+
+
+
+    <?php
+
+      if (isset($_COOKIE["user"])) {
+      $username = $_COOKIE["user"];
+      }
+      $isManager=$_COOKIE["manager"];
+
+      if(!$isManager)
+      {
+      echo '<button class="btn btn-lg btn-success" id="reserve">Reserve</button>';
+      }
+    ?>
+    
+    <?php if(!empty($Userseats))
     {
       echo '<button class="btn btn-lg btn-danger" id="cancel">Cancel</button>';
     }

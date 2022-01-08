@@ -60,6 +60,7 @@ function signup($conn)
     setcookie("user", "$username", time() + 7200, "/");
     if($request == 0) {
       setcookie("LoggedIn", "true", time() + 7200, "/");
+      setcookie("manager", "", time() - 7200, "/");
       header("Location:index.php?page=loggedin");
     } else if($request == 1) {
       setcookie("manager", "true", time() + 7200, "/");
