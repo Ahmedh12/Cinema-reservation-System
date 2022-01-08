@@ -131,7 +131,7 @@ function destroy_session()
                     class="detailsInfo2"><?php echo $_SESSION["duration"].'<br>'; ?></span>
                 <label class="detailsInfo">Screening Room: </label> <span
                     class="detailsInfo2"><?php echo $_SESSION["screeningRoom"].'<br>'; ?></span>
-                <img src="assets/img/<?php echo $_SESSION["posterImage"] ?>" alt="<?php echo $_SESSION["title"] ?>">
+                <img src="assets/img/<?php echo $_SESSION["posterImage"] ?>" alt="<?php echo $_SESSION["title"] ?>" width="300">
 
             </div>
             <?php destroy_session(); ?>
