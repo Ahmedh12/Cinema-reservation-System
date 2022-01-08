@@ -43,7 +43,7 @@ if (mysqli_query($conn, "CREATE DATABASE IF NOT EXISTS theater_db")) {
         "CREATE TABLE IF NOT EXISTS `reservations` (
     `id` int(11) NOT NULL AUTO_INCREMENT,
     PRIMARY KEY (`id`),
-    `user_name` int(11) NOT NULL,
+    `user_name` varchar(50) NOT NULL,
     FOREIGN KEY (`user_name`) REFERENCES `users`(`username`),
     `movie_id` int(11) NOT NULL,
     FOREIGN KEY (`movie_id`) REFERENCES `movies`(`id`),
