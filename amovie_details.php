@@ -98,10 +98,6 @@ function destroy_session()
         height: 50%
     }
 
-    .editmovie {
-        margin-left: 33.5%;
-    }
-
     img {
         position: absolute;
         top: 28%;

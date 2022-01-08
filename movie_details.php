@@ -66,10 +66,18 @@ $movies = $conn->query("SELECT * FROM movies  limit 20");
                             value="<?php echo $row['title'] ?>" />
                         <button type="submit" form="<?php echo $row['title'];?>"
                             class="btn btn-primary details options">Details</button>
-                    </form> <button class="btn btn-primary edit options"
-                        style="position:relative; left:200px; bottom:62px;">Edit</button>
+                    </form>
+                    <form action="amovie_edit.php" method="GET" id="<?php echo $row['id'];?>">
+                        <input type="text" class="input_data hidden" name="id" id="id"
+                            value="<?php echo $row['id'] ?>" />
+                        <button style="position:relative; left:80px; bottom:158px;" type="submit"
+                            form="<?php echo $row['id'];?>" class="btn btn-primary details options">Edit</button>
+                    </form>
+
+                    <!-- <button class="btn btn-primary edit options"
+                        style="position:relative; left:200px; bottom:62px;">Edit</button> -->
                     <button class="btn btn-primary shows options"
-                        style="position:relative; bottom:150px; ; left:30px">Seats Status</button>
+                        style="position:relative; bottom:350px; ; left:30px">Seats Status</button>
 
                 </div>
             </div>
@@ -81,7 +89,7 @@ $movies = $conn->query("SELECT * FROM movies  limit 20");
     </div>
 </div>
 
-<div class="edit_movie">
+<!-- <div class="edit_movie">
     <center>
         <h3 class="text-primary">Edit</h3>
     </center>
@@ -110,18 +118,18 @@ $movies = $conn->query("SELECT * FROM movies  limit 20");
     <center>
         <h3 class="footer">Refresh To Go Back</h3>
     </center>
-</div>
+</div> -->
 
 <script>
 $(document).ready(function() {
-    $('.edit_movie').hide();
+    // $('.edit_movie').hide();
     $('.hidden').hide();
 })
 
-$('.edit').click(function() {
-    $('.edit_movie').show();
-    $('.all_movies').hide();
-})
+// $('.edit').click(function() {
+//     $('.edit_movie').show();
+//     $('.all_movies').hide();
+// })
 
 // $('.details').click(function() {
 //     // var title = $(this).data("title");
