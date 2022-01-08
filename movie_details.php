@@ -67,9 +67,9 @@ $movies = $conn->query("SELECT * FROM movies  limit 20");
                         <button type="submit" form="<?php echo $row['title'];?>"
                             class="btn btn-primary details options">Details</button>
                     </form> <button class="btn btn-primary edit options"
-                        style="position:relative; left:200px; bottom:62px;">Edit</button>
-                    <button class="btn btn-primary shows options"
-                        style="position:relative; bottom:150px; ; left:30px">Seats Status</button>
+                    style="position:relative; left:200px; bottom:62px;">Edit</button>
+                    </form> <button class="btn btn-primary shows options" data-id="<?php echo $row['id'] . $row['room'] ?>"
+                    style="position:relative; bottom:150px; ; left:30px" >Seats Status</button>
 
                 </div>
             </div>
@@ -147,4 +147,7 @@ $('#movie-carousel-field .list-prev').click(function() {
             .find('img').width() * 3)
     }, 'slow');
 })
+$('.mov-det button').click(function() {
+    location.replace('index.php?page=hall' + $(this).attr('data-id')[1] + '&id=' + $(this).attr('data-id')[0])
+  })
 </script>
