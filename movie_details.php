@@ -73,11 +73,13 @@ $movies = $conn->query("SELECT * FROM movies  limit 20");
                         <button style="position:relative; left:80px; bottom:158px;" type="submit"
                             form="<?php echo $row['id'];?>" class="btn btn-primary details options">Edit</button>
                     </form>
+                    <button class="btn btn-primary shows options" data-id="<?php echo $row['id'] . $row['room'] ?>"
+                        style="position:relative; bottom:300px; ; left:30px">Seats Status</button>
 
                     <!-- <button class="btn btn-primary edit options"
                         style="position:relative; left:200px; bottom:62px;">Edit</button> -->
-                    <button class="btn btn-primary shows options"
-                        style="position:relative; bottom:350px; ; left:30px">Seats Status</button>
+                    <!-- <button class="btn btn-primary shows options"
+                        style="position:relative; bottom:350px; ; left:30px">Seats Status</button> -->
 
                 </div>
             </div>
@@ -124,6 +126,10 @@ $movies = $conn->query("SELECT * FROM movies  limit 20");
 $(document).ready(function() {
     // $('.edit_movie').hide();
     $('.hidden').hide();
+})
+
+$('.mov-det button').click(function() {
+    location.replace('index.php?page=hall' + $(this).attr('data-id')[1] + '&id=' + $(this).attr('data-id')[0])
 })
 
 // $('.edit').click(function() {
