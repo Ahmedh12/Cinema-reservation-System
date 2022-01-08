@@ -79,11 +79,14 @@ if (mysqli_query($conn, "CREATE DATABASE IF NOT EXISTS theater_db")) {
     mysqli_query($conn, $sampleMovieData);
 
     $sampleRoomData = "INSERT INTO `rooms` (`id`, `room_number`, `totalchairs`) VALUES
-    (1, 3, 20);";
+    (1, 1, 20);";
+    mysqli_query($conn, $sampleRoomData);
+    $sampleRoomData = "INSERT INTO `rooms` (`id`, `room_number`, `totalchairs`) VALUES
+    (2, 2, 30);";
     mysqli_query($conn, $sampleRoomData);
 
-    $update = "UPDATE `movies` SET `room`='2' WHERE `id`=1;";
-    mysqli_query($conn, $update);
+    // $update = "UPDATE `movies` SET `room`='2' WHERE `id`=1;";
+    // mysqli_query($conn, $update);
 
     $updateshow = "UPDATE `show_times` SET `start_time`='08:00', `end_time`='10:00', `movie_id`=1, `room_id`=1 WHERE `id`=1;";
     mysqli_query($conn, $updateshow);
