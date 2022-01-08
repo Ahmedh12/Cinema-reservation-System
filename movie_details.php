@@ -66,7 +66,11 @@ $movies = $conn->query("SELECT * FROM movies  limit 20");
                             value="<?php echo $row['title'] ?>" />
                         <button type="submit" form="removemovie"
                             class="btn btn-primary details options">Details</button>
-                    </form> <button class="btn btn-primary edit options">Edit</button>
+                    </form> <button class="btn btn-primary edit options"
+                        style="position:relative; left:200px; bottom:62px;">Edit</button>
+                    <button class="btn btn-primary shows options"
+                        style="position:relative; bottom:150px; ; left:30px">Seats Status</button>
+
                 </div>
             </div>
             <?php endwhile; ?>
